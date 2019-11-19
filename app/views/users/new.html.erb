@@ -1,0 +1,30 @@
+<div>
+<%= form_for :user, local: true do |form| %>
+    <% if @user.errors.any? %>
+    <% @user.errors.full_messages.each do|msg| %>
+    <div class="alert alert-danger"><%= msg %></div>
+  <% end %>
+<% end %>
+   <p>
+    <%= form.label :name %><br>
+    <%= form.text_field :name, class: 'form-control ',required: true%>
+  </p>
+
+   <p>
+    <%= form.label :email %><br>
+    <%= form.text_field :email,class: 'form-control', required: true  %>
+  </p>
+
+  <p>
+  <%= fields_for :request do |request_fields| %>
+            <%=request_fields.select(:request_type,  Request::TYPE_OF_REQUEST) %><br/> 
+            <%= request_fields.text_field :subject, class: 'form-control', required: true %><br/>
+            <%= request_fields.text_area :text, class: 'form-control', required: true %><br/>
+        <% end %>
+  </p>
+
+  <p>
+    <%= form.submit "Send request"%>
+  </p>
+<% end %>
+</div>
