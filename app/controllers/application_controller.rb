@@ -1,5 +1,4 @@
 class ApplicationController < ActionController::Base
-    before_action :authorized
     helper_method :current_staff_member 
     helper_method :logged_in?
     add_flash_types :success,:danger
@@ -13,8 +12,6 @@ class ApplicationController < ActionController::Base
     !current_staff_member.nil?
     end
 
-    def authorized
-        redirect_to '/welcome' unless logged_in?
-     end
+  
 
 end

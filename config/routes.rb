@@ -11,10 +11,12 @@ Rails.application.routes.draw do
   get 'pages/help'
   post 'users/new', to: "users#create"
   post 'requests/new' , to: "requests#create"
-  
+  get 'requests/all', to: "requests#index"
+  get 'requests/show',  to: "requests#show"
   resources :staff_members, only: [:new, :create]
-  resources :users
-  resources :requests
+  resources :users do
+     resources :requests
+  end
    
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

@@ -4,4 +4,5 @@ class Request < ApplicationRecord
     
     
 TYPE_OF_REQUEST = ["TYPE_1","TYPE_2","TYPE_3"]
+STATTUS_OD_REQUES = ["Unassigned", "Opened", "On hold", "Closed"]
 end

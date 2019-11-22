@@ -14,10 +14,11 @@
 <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm">
   <h5 class="my-0 mr-md-auto font-weight-normal">Support Issue Tracking</h5>
   <nav class="my-2 my-md-0 mr-md-3">
-    <span class="p-2 text-dark"><%= link_to "Home", pages_home_path %></span>
+    <span class="p-2 text-dark"><%= link_to "Home", pages_home_path if !logged_in? %></span>
     <span class="p-2 text-dark"><%= link_to "Help", pages_help_path %></span>
-    <span class="p-2 text-dark"><%= link_to "Log in", '/welcome' %></span>
-    <a class="p-2 text-dark"><%= current_staff_member.name if !current_staff_member.nil? %></a>
+    <span class="p-2 text-dark"><%= link_to "Requests", '/requests/all' if logged_in? %></span>
+    <span class="p-2 text-dark"><%= link_to "Log in", '/welcome'%></span>
+    <a class="p-2 text-dark"><%= current_staff_member.name if logged_in? %></a>
   </nav>
   </div>
   <div>

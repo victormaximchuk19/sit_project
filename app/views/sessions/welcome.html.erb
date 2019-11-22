@@ -1,8 +1,8 @@
 <div class="text-center">
 
 <% if logged_in? %>
-    <h1>You are Logged In, <%= current_staff_member.name %></h1>
-    <%= button_to "Logout" , 'sessions#destroy', method: :delete%>
+    <h1>You are logged in, <%= current_staff_member.name %></h1>
+    <%= button_to "Logout" , '/sessions', method: :delete%>
 <%end%>
 <%if !logged_in? %>
 <h1>Please login</h1>

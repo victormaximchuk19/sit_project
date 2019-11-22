@@ -1,4 +1,4 @@
-<div>
+<div class="container">
 <%= form_for :user, local: true do |form| %>
     <% if @user.errors.any? %>
     <% @user.errors.full_messages.each do|msg| %>
@@ -17,8 +17,12 @@
 
   <p>
   <%= fields_for :request do |request_fields| %>
+            <hr>
             <%=request_fields.select(:request_type,  Request::TYPE_OF_REQUEST) %><br/> 
+            <hr>
+            Subject
             <%= request_fields.text_field :subject, class: 'form-control', required: true %><br/>
+             Text
             <%= request_fields.text_area :text, class: 'form-control', required: true %><br/>
         <% end %>
   </p>
