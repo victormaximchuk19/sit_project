@@ -2,11 +2,12 @@
 
 <% if logged_in? %>
     <h1>You are logged in, <%= current_staff_member.name %></h1>
-    <%= button_to "Logout" , '/sessions', method: :delete%>
+    <%= button_to "Logout" , '/sessions', method: :delete %>
+    <%= button_to "New staff member",'/staffmembers/new' , method: :get%>
 <%end%>
 <%if !logged_in? %>
 <h1>Please login</h1>
-<%= button_to "Sign Up",'/staffmembers/new' , method: :get%>
+
 <%= button_to "Login", '/stafflogin', method: :get%>
 <%end%>
 </div>

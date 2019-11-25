@@ -1,4 +1,10 @@
 class StaffMembersController < ApplicationController
+    before_action :authorized  
+
+    def index
+      @staff_member=StaffMember.all
+    end
+
     def new 
       @staff_member=StaffMember.new
     end

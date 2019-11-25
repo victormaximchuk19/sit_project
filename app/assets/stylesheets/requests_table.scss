@@ -1,0 +1,15 @@
+.reqcontainer
+{
+  display: flex;
+  justify-content:  space-between;
+}
+
+.reqitem
+{
+    flex-grow: 1;
+    border-radius: 10px;
+    text-align: left;
+    margin: 20px;
+    background: aliceblue;
+
+}

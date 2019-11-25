@@ -1,4 +1,5 @@
 class SessionsController < ApplicationController
+  
   def new
   end
 
@@ -22,6 +23,7 @@ class SessionsController < ApplicationController
 
   def page_requires_login
   end
+  
   def destroy
     session.delete(:staff_member_id)
     @current_staff_member = nil

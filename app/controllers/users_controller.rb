@@ -1,5 +1,7 @@
 class UsersController < ApplicationController
     
+    skip_before_action :authorized, only: [:new, :create], raise: false
+
     ALPHA = ('A'..'Z').to_a 
     HEX   = ('A'..'F').to_a + (0..9).to_a
 

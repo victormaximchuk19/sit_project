@@ -1,0 +1,29 @@
+<div class='container'>
+     <%= form_with(url: @user_request.id.to_s , action: :update , model: @user_request) do |req| %>
+     <% @user_request.update(status: 'Opened') if @user_request.status == 'Waiting for staff response' %>
+          <hr>
+          <a>Owner of the request: <%= current_staff_member.name %> </a>
+          |<%= link_to 'Change owner', staffmembers_all_path%>
+          <hr>
+          <p>From: </p>
+          <p><%= User.find(@user_request.user_id).email %> </p> 
+          <hr>
+          <p>Subject: </p>
+          <h3><%= @user_request.subject %></h3>
+          <hr>
+          <p>Text: </p>
+          <h3><%= @user_request.text %> </h3>
+          <hr>
+          <p>Type of request: </p>
+          <p><%= @user_request.request_type %> </p>
+          <hr>
+          <p>Status of request: </p>
+               <%= req.select(:status , Request::STATUS_OF_REQUEST) %>
+               <%= button_to 'Change status' %>
+          <hr>
+     <%end%>
+
+          <p>Answer: </p>
+          <%= text_area_tag :answer %>
+          <%= button_to 'Send answer' %>
+</div>

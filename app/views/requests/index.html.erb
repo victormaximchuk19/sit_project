@@ -1,0 +1,76 @@
+<div class="reqcontainer">
+
+    <div class="reqitem">
+    <h2 class="text-center"> Unassigned </h2>
+    <hr>
+    <div style='margin-left: 20px;'>
+    <% @user_requests.each do |request|%>
+    <% if request.status == 'Waiting for staff response' %>
+        <p>From: <%= User.find(request.user_id).email %></p>
+        <p>Subject: <%= request.subject %></p>
+        <p>Text: <%= request.text %></p>
+        <p>Status: <%= request.status %></p>
+    <%= link_to "Read", action: 'show', id: request.id %> |
+    <%= link_to "Answer", action: 'edit', id: request.id %>
+    <hr>
+    <%end%>
+    <%end%>
+    </div>
+    </div>
+
+    <div class="reqitem">
+    <h2 class="text-center"> Opened </h2>
+    <hr>
+    <div style='margin-left: 20px;'>
+    <% @user_requests.each do |request|%>
+    <% if request.status == 'Opened' %>
+        <p>From: <%= User.find(request.user_id).email %></p>
+        <p>Subject: <%= request.subject %></p>
+        <p>Text: <%= request.text %></p>
+        <p>Status: <%= request.status %></p>
+    <%= link_to "Read", action: 'show', id: request.id %> |
+    <%= link_to "Answer", action: 'edit', id: request.id %>
+    <hr>
+    <%end%>
+    <%end%>
+    </div>
+    </div>
+
+    <div class="reqitem">
+    <h2 class="text-center"> On hold </h2>
+    <hr>
+    <div style='margin-left: 20px;'>
+    <% @user_requests.each do |request|%>
+    <% if request.status == 'On hold' %>
+        <p>From: <%= User.find(request.user_id).email %></p>
+        <p>Subject: <%= request.subject %></p>
+        <p>Text: <%= request.text %></p>
+        <p>Status: <%= request.status %></p>
+    <%= link_to "Read", action: 'show', id: request.id %> |
+    <%= link_to "Answer", action: 'edit', id: request.id %>
+    <hr>
+    <%end%>
+    <%end%>
+    </div>
+    </div>
+    
+    <div class="reqitem">
+    <h2 class="text-center"> Closed </h2>
+    <hr>
+    <div style='margin-left: 20px;'>
+    <% @user_requests.each do |request|%>
+    <% if request.status == 'Closed' %>
+        <p>From: <%= User.find(request.user_id).email %></p>
+        <p>Subject: <%= request.subject %></p>
+        <p>Text: <%= request.text %></p>
+        <p>Status: <%= request.status %></p>
+    <%= link_to "Read", action: 'show', id: request.id %> |
+    <%= link_to "Answer", action: 'edit', id: request.id %>
+    <hr>
+    <%end%>
+    <%end%>
+    </div>
+    </div>
+
+</div>
+
