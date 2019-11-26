@@ -2,7 +2,7 @@ class StaffMembersController < ApplicationController
     before_action :authorized  
 
     def index
-      @staff_member=StaffMember.all
+      @staff_members=StaffMember.all
     end
 
     def new 
@@ -15,8 +15,7 @@ class StaffMembersController < ApplicationController
         flash[:danger]
         render 'staff_members/new'
         else 
-        session[:staff_member_id] = @staff_member.id
-        flash[:success]="Welcome!"
+        flash[:success]="Staff member created!"
         redirect_to '/welcome' 
       end
       

@@ -1,9 +1,17 @@
+<div class='container' style='max-width: 235px; background: aliceblue;'>
 <h1>Login</h1>
-   <% #form_tag '/login' do %>
+<hr>
    <%= form_for :session, url: '/login', local: true do |f| %>
-   <%= label_tag :name%>
+   <p>
+   Name:<br>
    <%= f.text_field :name %>
-   <%= label_tag :password_digest%>
+   </p>
+<hr>
+   <p>
+   Password:<br>
    <%= f.password_field :password_digest%>
-   <%= f.submit "Login"%>
+   </p>
+<hr>
+   <%= f.submit "Login"%><br>
 <%end%>
+</div>

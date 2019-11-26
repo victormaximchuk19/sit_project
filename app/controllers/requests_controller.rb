@@ -1,26 +1,44 @@
 class RequestsController < ApplicationController
-    before_action :authorized
+    before_action :authorized, except: :show
     def index
         @user_requests = Request.all
     end
 
     def show
-        @user_request = Request.find(params[:id])
+        @user_request = Request.find_by_uniq_url(params[:uniq_url])
     end
     
     def edit        
-        @user_request = Request.find(params[:id])
+        @user_request = Request.find_by_uniq_url(params[:uniq_url])
     end
 
-    def update
-        @user_request = Request.find_by_id(params[:id])
+    def update_owner
+        @user_request = Request.find_by_uniq_url(params[:uniq_url])
+        @user_request.update(new_request_owner)
+        flash[:success]='Owner changed successfully!'
+        redirect_to requests_all_path
+    end    
+    
+    def update_status
+        @user_request = Request.find_by_uniq_url(params[:uniq_url])
         @user_request.update(request_status)
         flash[:success]='Status changed successfully!'
-        redirect_to '/request/answer/' + @user_request.id.to_s
+        redirect_to '/request/answer/' + @user_request.uniq_url
+    end
+
+    def destroy
+        @user_request=Request.find_by_uniq_url(params[:uniq_url])
+        @user_request.destroy
+        flash[:success]='Request deleted!'
+        redirect_to requests_all_path
     end
 
     private
     def request_status
         params.require(:request).permit(:status) 
+    end
+
+    def new_request_owner
+        params.require(:data).permit(:request_owner)
     end
 end

@@ -1,11 +1,13 @@
 <div class='container'>
-     <%= form_with(url: @user_request.id.to_s , action: :update , model: @user_request) do |req| %>
-     <% @user_request.update(status: 'Opened') if @user_request.status == 'Waiting for staff response' %>
+     <%= link_to 'Back', requests_all_path %>
+     <%= form_with(url: @user_request.uniq_url , action: :update , model: @user_request) do |req| %>
+     <% @user_request.update(request_owner: current_staff_member.name, status: 'Opened') if @user_request.status == 'Waiting for staff response' %>
           <hr>
-          <a>Owner of the request: <%= current_staff_member.name %> </a>
-          |<%= link_to 'Change owner', staffmembers_all_path%>
+          <a>Owner of the request: <%= @user_request.request_owner %> </a>
+          | <%= link_to 'Set owner', @user_request.uniq_url + '/setowner' %>
           <hr>
           <p>From: </p>
+          <p><%= User.find(@user_request.user_id).name %> </p> 
           <p><%= User.find(@user_request.user_id).email %> </p> 
           <hr>
           <p>Subject: </p>
@@ -21,9 +23,12 @@
                <%= req.select(:status , Request::STATUS_OF_REQUEST) %>
                <%= button_to 'Change status' %>
           <hr>
+          <%= button_to 'Delete request', action: :destroy, method: :delete %>
+          <hr>
      <%end%>
 
           <p>Answer: </p>
           <%= text_area_tag :answer %>
           <%= button_to 'Send answer' %>
+          
 </div>

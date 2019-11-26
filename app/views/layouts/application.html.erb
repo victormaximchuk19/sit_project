@@ -17,7 +17,11 @@
     <span class="p-2 text-dark"><%= link_to "Home", pages_home_path %></span>
     <span class="p-2 text-dark"><%= link_to "Help", pages_help_path %></span>
     <span class="p-2 text-dark"><%= link_to "Requests", '/requests/all' if logged_in? %></span>
-    <span class="p-2 text-dark"><%= link_to "Log in", '/welcome'%></span>
+    <% if !logged_in? %>
+    <span class="p-2 text-dark"><%= link_to "Log in", stafflogin_path %></span>
+    <% else %>
+    <span class="p-2 text-dark"><%= link_to "Log in", welcome_path %></span>
+    <% end %>
     <a class="p-2 text-dark"><%= current_staff_member.name if logged_in? %></a>
   </nav>
   </div>

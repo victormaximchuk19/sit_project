@@ -1,6 +1,7 @@
 <div class='container'> 
    <hr>
         <p>From: </p>
+        <p><%= User.find(@user_request.user_id).name %> </p> 
         <p><%= User.find(@user_request.user_id).email %> </p> 
    <hr>
         <p>Subject: </p>

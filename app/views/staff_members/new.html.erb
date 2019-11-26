@@ -1,9 +1,17 @@
-<h1>Login</h1>
-   <% #form_tag '/login' do %>
+<div class='container' style='max-width: 235px; background: aliceblue;'>
+<h1>New staff member</h1>
+<hr>
    <%= form_for :staff_member, local: true do |f| %>
-   <%= label_tag :name%>
-   <%= f.text_field :name, required: true %>
-   <%= label_tag :password_digest%>
-   <%= f.password_field :password_digest, required: true%>
-   <%= f.submit "Sign up"%>
+   <p>
+   Name:<br>
+   <%= f.text_field :name %>
+   </p>
+<hr>
+   <p>
+   Password:<br>
+   <%= f.password_field :password_digest%>
+   </p>
+<hr>
+   <%= f.submit "Create"%>
 <%end%>
+</div>

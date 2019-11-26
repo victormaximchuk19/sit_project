@@ -10,8 +10,8 @@
         <p>Subject: <%= request.subject %></p>
         <p>Text: <%= request.text %></p>
         <p>Status: <%= request.status %></p>
-    <%= link_to "Read", action: 'show', id: request.id %> |
-    <%= link_to "Answer", action: 'edit', id: request.id %>
+    <%= link_to "Read", action: 'show', uniq_url: request.uniq_url %> |
+    <%= link_to "Answer", action: 'edit', uniq_url: request.uniq_url %>
     <hr>
     <%end%>
     <%end%>
@@ -23,13 +23,13 @@
     <hr>
     <div style='margin-left: 20px;'>
     <% @user_requests.each do |request|%>
-    <% if request.status == 'Opened' %>
+    <% if request.status == 'Opened' && request.request_owner == current_staff_member.name %>
         <p>From: <%= User.find(request.user_id).email %></p>
         <p>Subject: <%= request.subject %></p>
         <p>Text: <%= request.text %></p>
         <p>Status: <%= request.status %></p>
-    <%= link_to "Read", action: 'show', id: request.id %> |
-    <%= link_to "Answer", action: 'edit', id: request.id %>
+    <%= link_to "Read", action: 'show', uniq_url: request.uniq_url %> |
+    <%= link_to "Answer", action: 'edit', uniq_url: request.uniq_url %>
     <hr>
     <%end%>
     <%end%>
@@ -41,13 +41,13 @@
     <hr>
     <div style='margin-left: 20px;'>
     <% @user_requests.each do |request|%>
-    <% if request.status == 'On hold' %>
+    <% if request.status == 'On hold' && request.request_owner == current_staff_member.name %>
         <p>From: <%= User.find(request.user_id).email %></p>
         <p>Subject: <%= request.subject %></p>
         <p>Text: <%= request.text %></p>
         <p>Status: <%= request.status %></p>
-    <%= link_to "Read", action: 'show', id: request.id %> |
-    <%= link_to "Answer", action: 'edit', id: request.id %>
+    <%= link_to "Read", action: 'show', uniq_url: request.uniq_url %> |
+    <%= link_to "Answer", action: 'edit', uniq_url: request.uniq_url %>
     <hr>
     <%end%>
     <%end%>
@@ -59,13 +59,13 @@
     <hr>
     <div style='margin-left: 20px;'>
     <% @user_requests.each do |request|%>
-    <% if request.status == 'Closed' %>
+    <% if request.status == 'Closed' && request.request_owner == current_staff_member.name %>
         <p>From: <%= User.find(request.user_id).email %></p>
         <p>Subject: <%= request.subject %></p>
         <p>Text: <%= request.text %></p>
         <p>Status: <%= request.status %></p>
-    <%= link_to "Read", action: 'show', id: request.id %> |
-    <%= link_to "Answer", action: 'edit', id: request.id %>
+    <%= link_to "Read", action: 'show', uniq_url: request.uniq_url %> |
+    <%= link_to "Answer", action: 'edit', uniq_url: request.uniq_url %>
     <hr>
     <%end%>
     <%end%>
@@ -73,4 +73,5 @@
     </div>
 
 </div>
+
 

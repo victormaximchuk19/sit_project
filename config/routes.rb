@@ -14,9 +14,12 @@ Rails.application.routes.draw do
   post 'users/new', to: "users#create"
   post 'requests/new' , to: "requests#create"
   get 'requests/all', to: "requests#index"
-  get 'request/show/:id',  to: "requests#show"
-  get 'request/answer/:id',  to: "requests#edit"
-  patch 'request/answer/:id', to: 'requests#update'
+  get 'request/show/:uniq_url',  to: "requests#show"
+  get 'request/answer/:uniq_url',  to: "requests#edit"
+  patch 'request/answer/:uniq_url', to: 'requests#update_status'
+  get 'request/answer/:uniq_url/setowner', to: 'staff_members#index'
+  post 'request/answer/:uniq_url/setowner', to: 'requests#update_owner'
+  post 'request/answer/:uniq_url', to: 'requests#destroy'
   resources :staff_members, only: [:new, :create]
   # resources :users do
   #    resources :requests

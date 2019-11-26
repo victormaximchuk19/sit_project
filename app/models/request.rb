@@ -1,5 +1,6 @@
 class Request < ApplicationRecord
     belongs_to :user, optional: true
+    belongs_to :staff_member, optional: true
     validates :text, presence: true, length: {minimum:3 , maximum: 3000}
     
     
