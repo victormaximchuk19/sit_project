@@ -16,7 +16,7 @@ From:
 Subject: 
 <%= req.subject %><br>
 Text: 
-<%= req.text %><br>
+<%= truncate(req.text, limit: 30) %><br>
 Type: 
 <%= req.request_type %><br>
 Status: 

@@ -1,4 +1,5 @@
-<div class='container'>
+<div class='container' style='overflow: hidden;
+    overflow-wrap: break-word;'>
      <%= link_to 'Back', requests_all_path %>
      <%= form_with(url: @user_request.uniq_url , action: :update , model: @user_request) do |req| %>
      <% @user_request.update(request_owner: current_staff_member.name, status: 'Opened') if @user_request.status == 'Waiting for staff response' %>
@@ -14,7 +15,7 @@
           <h3><%= @user_request.subject %></h3>
           <hr>
           <p>Text: </p>
-          <h3><%= @user_request.text %> </h3>
+          <h4><%= @user_request.text %> </h4>
           <hr>
           <p>Type of the request: </p>
           <p><%= @user_request.request_type %> </p>
