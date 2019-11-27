@@ -4,6 +4,14 @@ class RequestsController < ApplicationController
         @user_requests = Request.all
     end
 
+    def show_all
+        if !params['search'].blank?
+            @user_requests = Request.where('subject LIKE (?) OR uniq_url LIKE (?)', params['search'], params['search'])
+          else
+            @user_requests = Request.all
+          end
+    end
+
     def show
         @user_request = Request.find_by_uniq_url(params[:uniq_url])
     end
@@ -41,4 +49,8 @@ class RequestsController < ApplicationController
     def new_request_owner
         params.require(:data).permit(:request_owner)
     end
+
+    def search_params
+        params.require(:search)
+      end
 end

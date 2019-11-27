@@ -1,7 +1,11 @@
+<div style='margin-left:25px;'>
+<%= link_to 'All requests ', requests_showall_path %>
+</div>
+<hr>
 <div class="reqcontainer">
 
     <div class="reqitem">
-    <h2 class="text-center"> Unassigned </h2>
+    <h2 class="text-center" style='margin-top:20px; color: slategrey;'> Unassigned </h2>
     <hr>
     <div style='margin-left: 20px;'>
     <% @user_requests.each do |request|%>
@@ -19,7 +23,7 @@
     </div>
 
     <div class="reqitem">
-    <h2 class="text-center"> Opened </h2>
+    <h2 class="text-center" style='margin-top:20px; color: slategrey;'> Opened </h2>
     <hr>
     <div style='margin-left: 20px;'>
     <% @user_requests.each do |request|%>
@@ -37,7 +41,7 @@
     </div>
 
     <div class="reqitem">
-    <h2 class="text-center"> On hold </h2>
+    <h2 class="text-center" style='margin-top:20px; color: slategrey;'> On hold </h2>
     <hr>
     <div style='margin-left: 20px;'>
     <% @user_requests.each do |request|%>
@@ -55,7 +59,7 @@
     </div>
     
     <div class="reqitem">
-    <h2 class="text-center"> Closed </h2>
+    <h2 class="text-center" style='margin-top:20px; color: slategrey;'> Closed </h2>
     <hr>
     <div style='margin-left: 20px;'>
     <% @user_requests.each do |request|%>

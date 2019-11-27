@@ -16,11 +16,10 @@
           <p>Text: </p>
           <h3><%= @user_request.text %> </h3>
           <hr>
-          <p>Type of request: </p>
+          <p>Type of the request: </p>
           <p><%= @user_request.request_type %> </p>
           <hr>
-          <p>Status of request: </p>
-               <%= req.select(:status , Request::STATUS_OF_REQUEST) %>
+          <p>Status of the request: <%= req.select(:status , Request::STATUS_OF_REQUEST) %> </p>
                <%= button_to 'Change status' %>
           <hr>
           <%= button_to 'Delete request', action: :destroy, method: :delete %>
@@ -28,7 +27,7 @@
      <%end%>
 
           <p>Answer: </p>
-          <%= text_area_tag :answer %>
+          <%= text_area_tag(:answer, nil ,style: "width:100%;") %>
           <%= button_to 'Send answer' %>
           
 </div>

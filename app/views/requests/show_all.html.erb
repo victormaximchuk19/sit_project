@@ -1,0 +1,27 @@
+<div class='container'>
+<p>Search for reqeust:</p>
+<%= form_tag(requests_showall_path, method: :get) %>
+<%= text_field_tag(:search, params[:search]) %>
+<%= submit_tag 'Search', name: nil %>
+</div>
+
+<div class='container'>
+<% @user_requests.each do |req| %>
+<hr>
+Owner: 
+<%= req.request_owner %><br>
+From: 
+<%= User.find(req.user_id).name %>,
+<%= User.find(req.user_id).email %><br>
+Subject: 
+<%= req.subject %><br>
+Text: 
+<%= req.text %><br>
+Type: 
+<%= req.request_type %><br>
+Status: 
+<%= req.status %><br>
+<%= link_to 'Read', '/request/show/'+req.uniq_url%>
+<hr>
+<% end %>
+</div>
