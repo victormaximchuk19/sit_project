@@ -6,7 +6,7 @@ class RequestsController < ApplicationController
 
     def show_all
         if !params['search'].blank?
-            @user_requests = Request.where("subject LIKE (?) OR uniq_url LIKE (?)", "%#{params['search']}%", params['search'])
+            @user_requests = Request.where("LOWER(subject) LIKE LOWER(?) OR uniq_url LIKE (?)", "%#{params['search']}%", params['search'])
           else
             @user_requests = Request.all
           end
