@@ -1,8 +1,10 @@
-<div class='container' style='overflow: hidden;
-    overflow-wrap: break-word;'>
+<div class='container' style='overflow: hidden; overflow-wrap: break-word;'>
      <%= link_to 'Back', requests_all_path %>
      <%= form_with(url: @user_request.uniq_url , action: :update , model: @user_request) do |req| %>
-     <% @user_request.update(request_owner: current_staff_member.name, status: 'Opened') if @user_request.status == 'Waiting for staff response' %>
+     <% if @user_request.status == 'Waiting for staff response' %>
+     <% @user_request.update(request_owner: current_staff_member.name, status: 'Opened') %>
+     <% UserMailer.status_updated(@user_request).deliver %>
+     <% end %>
           <hr>
           <a>Owner of the request: <%= @user_request.request_owner %> </a>
           | <%= link_to 'Set owner', @user_request.uniq_url + '/setowner' %>
@@ -23,12 +25,13 @@
           <p>Status of the request: <%= req.select(:status , Request::STATUS_OF_REQUEST) %> </p>
                <%= button_to 'Change status' %>
           <hr>
-          <%= button_to 'Delete request', action: :destroy, method: :delete %>
+          <%= link_to 'Delete request', '/request/answer/' + @user_request.uniq_url , method: :delete %>
           <hr>
      <%end%>
 
           <p>Answer: </p>
-          <%= text_area_tag(:answer, nil ,style: "width:100%;") %>
-          <%= button_to 'Send answer' %>
-          
+          <%= form_with do |a| %>
+          <%= a.text_area(:answer ,style: "width:100%;") %>
+          <%= a.submit 'Send answer' %>
+          <% end %>     
 </div>

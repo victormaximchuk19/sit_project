@@ -1,0 +1,7 @@
+<h1>Dear <%= @user.name %>, </h1>
+
+<p>
+Status of your request updated to '<%= @request.status %>'.
+Please wait for responce!
+</p>
+<p><%= link_to 'Your reqeust', "#{ENV['DOMAIN']}/request/show/" + @request.uniq_url %></p>

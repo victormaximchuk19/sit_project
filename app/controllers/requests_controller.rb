@@ -31,11 +31,21 @@ class RequestsController < ApplicationController
         @user_request = Request.find_by_uniq_url(params[:uniq_url])
         @user_request.update(request_status)
         flash[:success]='Status changed successfully!'
+        UserMailer.status_updated(@user_request).deliver
+        redirect_to '/request/answer/' + @user_request.uniq_url
+    end
+
+    def send_answer
+        @user_request=Request.find_by_uniq_url(params[:uniq_url])
+        answer = params[:answer]
+        UserMailer.answer(@user_request, answer).deliver
+        flash[:success]='Your answer send successfully!'
         redirect_to '/request/answer/' + @user_request.uniq_url
     end
 
     def destroy
         @user_request=Request.find_by_uniq_url(params[:uniq_url])
+        UserMailer.request_deleted(@user_request).deliver
         @user_request.destroy
         flash[:success]='Request deleted!'
         redirect_to requests_all_path

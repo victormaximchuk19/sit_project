@@ -1,0 +1,9 @@
+<h1>Dear <%= @user.name %>, </h1>
+
+<p>
+Your reqeust successfully received.
+</p>
+
+<p> <%= @answer %> </p>
+
+<p><%= link_to 'Your reqeust', "#{ENV['DOMAIN']}/request/show/" + @request.uniq_url %></p>

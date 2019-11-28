@@ -1,4 +1,5 @@
 <div class='container'>
+<%= link_to 'Back', requests_all_path %>
 <p>Search for reqeust:</p>
 <%= form_tag(requests_showall_path, method: :get) %>
 <%= text_field_tag(:search, params[:search]) %>

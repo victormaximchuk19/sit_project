@@ -23,6 +23,7 @@ class UsersController < ApplicationController
             status: "Waiting for staff response")
             @user_request.save
             flash[:success]="Request send successfully!"
+            UserMailer.request_received(@user, @user_request).deliver
             redirect_to pages_home_path
          else
           flash[:danger]

@@ -18,10 +18,11 @@ Rails.application.routes.draw do
   get 'request/show/:uniq_url',  to: "requests#show"
   get 'request/answer/:uniq_url',  to: "requests#edit"
   patch 'request/answer/:uniq_url', to: 'requests#update_status'
+  post 'request/answer/:uniq_url', to: 'requests#send_answer'
   get 'request/search', to: 'requests#search'
   get 'request/answer/:uniq_url/setowner', to: 'staff_members#index'
   post 'request/answer/:uniq_url/setowner', to: 'requests#update_owner'
-  post 'request/answer/:uniq_url', to: 'requests#destroy'
+  delete 'request/answer/:uniq_url', to: 'requests#destroy'
   resources :staff_members, only: [:new, :create]
   # resources :users do
   #    resources :requests
