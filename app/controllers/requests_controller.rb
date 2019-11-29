@@ -37,10 +37,15 @@ class RequestsController < ApplicationController
 
     def send_answer
         @user_request=Request.find_by_uniq_url(params[:uniq_url])
-        answer = params[:answer]
-        UserMailer.answer(@user_request, answer).deliver
-        flash[:success]='Your answer send successfully!'
-        redirect_to '/request/answer/' + @user_request.uniq_url
+        if !params[:answer] == "" 
+            answer = params[:answer] 
+            UserMailer.answer(@user_request, answer).deliver
+            flash[:success]='Your answer send successfully!'
+            redirect_to '/request/answer/' + @user_request.uniq_url
+        else
+            flash[:danger] = 'Answer field cant be blank!'
+            redirect_to '/request/answer/' + @user_request.uniq_url
+        end
     end
 
     def destroy

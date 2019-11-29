@@ -24,7 +24,7 @@
             Subject
             <%= request_fields.text_field :subject, class: 'form-control', required: true %><br/>
              Text
-            <%= request_fields.text_area :text, class: 'form-control', required: true %><br/>
+            <%= request_fields.text_area :text, class: 'form-control', required: true, minlength: 3 %><br/>
         <% end %>
   </p>
 

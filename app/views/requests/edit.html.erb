@@ -31,7 +31,7 @@
 
           <p>Answer: </p>
           <%= form_with do |a| %>
-          <%= a.text_area(:answer ,style: "width:100%;") %>
+          <%= a.text_area(:answer ,style: "width:100%;", required: true) %>
           <%= a.submit 'Send answer' %>
           <% end %>     
 </div>
