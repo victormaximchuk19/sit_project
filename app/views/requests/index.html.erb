@@ -7,15 +7,17 @@
     <div class="reqitem">
     <h2 class="text-center" style='margin-top:20px; color: slategrey;'> Unassigned </h2>
     <hr>
-    <div style='margin-left: 20px;'>
+    <div class='requestontable'>
     <% @user_requests.each do |request|%>
     <% if request.status == 'Waiting for staff response' %>
+    <div class='reqtext'>
         <p>From: <%= User.find(request.user_id).email %></p>
         <p>Subject: <%= request.subject %></p>
         <p>Text: <%=truncate(request.text, limit: 30) %></p>
         <p>Status: <%= request.status %></p>
     <%= link_to "Read", action: 'show', uniq_url: request.uniq_url %> |
     <%= link_to "Answer", action: 'edit', uniq_url: request.uniq_url %>
+    </div>
     <hr>
     <%end%>
     <%end%>
@@ -25,15 +27,17 @@
     <div class="reqitem">
     <h2 class="text-center" style='margin-top:20px; color: slategrey;'> Opened </h2>
     <hr>
-    <div style='margin-left: 20px;'>
+    <div class='requestontable'>
     <% @user_requests.each do |request|%>
     <% if request.status == 'Opened' && request.request_owner == current_staff_member.name %>
+    <div class='reqtext'>
         <p>From: <%= User.find(request.user_id).email %></p>
         <p>Subject: <%= request.subject %></p>
         <p>Text: <%= truncate(request.text, limit: 30) %></p>
         <p>Status: <%= request.status %></p>
     <%= link_to "Read", action: 'show', uniq_url: request.uniq_url %> |
     <%= link_to "Answer", action: 'edit', uniq_url: request.uniq_url %>
+    </div>
     <hr>
     <%end%>
     <%end%>
@@ -43,15 +47,17 @@
     <div class="reqitem">
     <h2 class="text-center" style='margin-top:20px; color: slategrey;'> On hold </h2>
     <hr>
-    <div style='margin-left: 20px;'>
+    <div class='requestontable'>
     <% @user_requests.each do |request|%>
     <% if request.status == 'On hold' && request.request_owner == current_staff_member.name %>
+    <div class='reqtext'>
         <p>From: <%= User.find(request.user_id).email %></p>
         <p>Subject: <%= request.subject %></p>
         <p>Text: <%= truncate(request.text, limit: 30) %></p>
         <p>Status: <%= request.status %></p>
     <%= link_to "Read", action: 'show', uniq_url: request.uniq_url %> |
     <%= link_to "Answer", action: 'edit', uniq_url: request.uniq_url %>
+    </div>
     <hr>
     <%end%>
     <%end%>
@@ -61,15 +67,17 @@
     <div class="reqitem">
     <h2 class="text-center" style='margin-top:20px; color: slategrey;'> Closed </h2>
     <hr>
-    <div style='margin-left: 20px;'>
+    <div class='requestontable'>
     <% @user_requests.each do |request|%>
     <% if request.status == 'Closed' && request.request_owner == current_staff_member.name %>
+    <div class='reqtext'>
         <p>From: <%= User.find(request.user_id).email %></p>
         <p>Subject: <%= request.subject %></p>
         <p>Text: <%= truncate(request.text, limit: 30) %></p>
         <p>Status: <%= request.status %></p>
     <%= link_to "Read", action: 'show', uniq_url: request.uniq_url %> |
     <%= link_to "Answer", action: 'edit', uniq_url: request.uniq_url %>
+    </div>
     <hr>
     <%end%>
     <%end%>

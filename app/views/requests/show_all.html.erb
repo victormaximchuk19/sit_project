@@ -7,22 +7,24 @@
 </div>
 
 <div class='container'>
-<% @user_requests.each do |req| %>
-<hr>
-Owner: 
-<%= req.request_owner %><br>
-From: 
-<%= User.find(req.user_id).name %>,
-<%= User.find(req.user_id).email %><br>
-Subject: 
-<%= req.subject %><br>
-Text: 
-<%= truncate(req.text, limit: 30) %><br>
-Type: 
-<%= req.request_type %><br>
-Status: 
-<%= req.status %><br>
-<%= link_to 'Read', '/request/show/'+req.uniq_url%>
-<hr>
-<% end %>
+    <div style='background: #afcce6; padding-left: 15px; border-radius: 10px;'>
+    <% @user_requests.each do |req| %>
+    <hr>
+    Owner: 
+    <%= req.request_owner %><br>
+    From: 
+    <%= User.find(req.user_id).name %>,
+    <%= User.find(req.user_id).email %><br>
+    Subject: 
+    <%= req.subject %><br>
+    Text: 
+    <%= truncate(req.text, limit: 30) %><br>
+    Type: 
+    <%= req.request_type %><br>
+    Status: 
+    <%= req.status %><br>
+    <%= link_to 'Read', '/request/show/'+req.uniq_url%>
+    <hr>
+    <% end %>
+    </div>
 </div>

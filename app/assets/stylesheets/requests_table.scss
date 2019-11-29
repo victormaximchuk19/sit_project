@@ -7,9 +7,29 @@
 .reqitem
 {
     flex-grow: 1;
-    border-radius: 10px;
+    border-radius: 5px;
     text-align: left;
     margin: 20px;
-    background: aliceblue;
-    border: solid 2px powderblue;
+    background: #afcce6;
+    
 }
+
+.requestontable{
+  margin-left: 20px;
+  background: #88bcbd;
+  margin-right: 20px;
+  border-radius: 5px;
+  padding-top: 5px;
+}
+
+.reqtext{
+  margin-left: 20px;
+  margin-top: 10px;
+}
+
+.bg{
+    background: honeydew;
+    font-family: monospace;
+    font-size: large;
+}
+
