@@ -37,7 +37,7 @@ class RequestsController < ApplicationController
 
     def send_answer
         @user_request=Request.find_by_uniq_url(params[:uniq_url])
-        if !params[:answer] == "" 
+        if  !(params[:answer] == "") 
             answer = params[:answer] 
             UserMailer.answer(@user_request, answer).deliver
             flash[:success]='Your answer send successfully!'
