@@ -11,11 +11,8 @@
         <p>From: </p>
         <p><%= User.find(@user_request.user_id).name %> </p> 
         <p><%= User.find(@user_request.user_id).email %> </p> 
-   <hr>
-        <p>Subject: </p>
-        <h3><%= @user_request.subject %></h3>
         <hr>
-        <p>Text: </p>
+        <h3><%= @user_request.subject %></h3>
         <h5><%= @user_request.text %> </h5>
         <hr>
         <p>Type of the request: </p>
@@ -24,4 +21,15 @@
         <p>Status of the request: </p>
         <p><%= @user_request.status %> </p>
    <hr>
+          <p style='margin-top:10px;'>Answers:</p> 
+          <div class='answers'>
+               <% @answers = Answer.all %> 
+               <% @answers.each do |answ| %>
+                    <% if answ.request_url == @user_request.uniq_url %>
+                         <h4> From: <%= @user_request.request_owner %> </h4>
+                         <p>  <%= answ.answer_text %></p>
+                         <hr>
+                    <% end %>
+               <% end %>
+          </div>
 </div>

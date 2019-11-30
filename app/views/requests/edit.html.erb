@@ -20,10 +20,7 @@
           <p><%= User.find(@user_request.user_id).name %> </p> 
           <p><%= User.find(@user_request.user_id).email %> </p> 
           <hr>
-          <p>Subject: </p>
           <h3><%= @user_request.subject %></h3>
-          <hr>
-          <p>Text: </p>
           <h5><%= @user_request.text %> </h5>
           <hr>
           <p>Type of the request: </p>
@@ -32,13 +29,25 @@
           <p>Status of the request: <%= req.select(:status , Request::STATUS_OF_REQUEST) %> </p>
                <%= button_to 'Change status' %>
           <hr>
-          <%= link_to 'Delete request', '/request/answer/' + @user_request.uniq_url , method: :delete %>
-          <hr>
      <%end%>
-
-          <p>Answer: </p>
+          <p style='margin-top:10px;'>Answers:</p> 
+          <div class='answers'>
+               <% @answers = Answer.all %> 
+               <% @answers.each do |answ| %>
+                    <% if answ.request_url == @user_request.uniq_url %>
+                         <h4> From: <%= @user_request.request_owner %> </h4>
+                         <p>  <%= answ.answer_text %></p>
+                         <hr>
+                    <% end %>
+               <% end %>
+          </div>
+          <hr>
+          <p style='margin-top:10px;'>Answer: </p>
           <%= form_with do |a| %>
-          <%= a.text_area(:answer ,style: "width:100%;", required: true) %>
+          <%= a.text_area(:answer ,style: "width:100%; height:150px;", required: true) %>
           <%= a.submit 'Send answer' %>
-          <% end %>     
+          <% end %>
+          <hr>
+          <%= link_to 'Delete request', '/request/answer/' + @user_request.uniq_url , method: :delete %>
+          
 </div>

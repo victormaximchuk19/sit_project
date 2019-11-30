@@ -4,6 +4,6 @@
 Your reqeust successfully received.
 </p>
 
-<p> <%= @answer %> </p>
+<p> <%= @answer.answer_text %> </p>
 
 <p><%= link_to 'Your reqeust', "#{ENV['DOMAIN']}/request/show/" + @request.uniq_url %></p>
