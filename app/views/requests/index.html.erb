@@ -15,6 +15,7 @@
         <p>Subject: <%= request.subject %></p>
         <p>Text: <%=truncate(request.text, limit: 30) %></p>
         <p>Status: <%= request.status %></p>
+        <p class='datestyle'> <%= request.created_at.strftime("%Y-%m-%d") %></p>
     <%= link_to "Read", action: 'show', uniq_url: request.uniq_url %> |
     <%= link_to "Answer", action: 'edit', uniq_url: request.uniq_url %>
     </div>
@@ -35,6 +36,7 @@
         <p>Subject: <%= request.subject %></p>
         <p>Text: <%= truncate(request.text, limit: 30) %></p>
         <p>Status: <%= request.status %></p>
+        <p class='datestyle'> <%= request.created_at.strftime("%Y-%m-%d") %></p>
     <%= link_to "Read", action: 'show', uniq_url: request.uniq_url %> |
     <%= link_to "Answer", action: 'edit', uniq_url: request.uniq_url %>
     </div>
@@ -55,6 +57,7 @@
         <p>Subject: <%= request.subject %></p>
         <p>Text: <%= truncate(request.text, limit: 30) %></p>
         <p>Status: <%= request.status %></p>
+        <p class='datestyle'> <%= request.created_at.strftime("%Y-%m-%d") %></p>
     <%= link_to "Read", action: 'show', uniq_url: request.uniq_url %> |
     <%= link_to "Answer", action: 'edit', uniq_url: request.uniq_url %>
     </div>
@@ -75,6 +78,7 @@
         <p>Subject: <%= request.subject %></p>
         <p>Text: <%= truncate(request.text, limit: 30) %></p>
         <p>Status: <%= request.status %></p>
+        <p class='datestyle'> <%= request.created_at.strftime("%Y-%m-%d") %></p>
     <%= link_to "Read", action: 'show', uniq_url: request.uniq_url %> |
     <%= link_to "Answer", action: 'edit', uniq_url: request.uniq_url %>
     </div>
