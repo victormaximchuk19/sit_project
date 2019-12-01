@@ -28,6 +28,7 @@
                     <% if answ.request_url == @user_request.uniq_url %>
                          <h4> From: <%= @user_request.request_owner %> </h4>
                          <p>  <%= answ.answer_text %></p>
+                         <p>Sent at <%= answ.created_at.strftime("%Y-%m-%d %H:%M") %></p>
                          <hr>
                     <% end %>
                <% end %>
