@@ -11,7 +11,7 @@
     <% @user_requests.each do |request|%>
     <% if request.status == 'Waiting for staff response' %>
     <div class='reqtext'>
-        <p>From: <%= User.find(request.user_id).email %></p>
+        <p>From: <%= request.user.email %></p>
         <p>Subject: <%= request.subject %></p>
         <p>Text: <%=truncate(request.text, limit: 30) %></p>
         <p>Status: <%= request.status %></p>
@@ -30,9 +30,9 @@
     <hr>
     <div class='requestontable'>
     <% @user_requests.each do |request|%>
-    <% if request.status == 'Opened' && request.request_owner == current_staff_member.name %>
+    <% if request.status == 'Opened' && request.staff_member.id == current_staff_member.id %>
     <div class='reqtext'>
-        <p>From: <%= User.find(request.user_id).email %></p>
+        <p>From: <%= request.user.email %></p>
         <p>Subject: <%= request.subject %></p>
         <p>Text: <%= truncate(request.text, limit: 30) %></p>
         <p>Status: <%= request.status %></p>
@@ -51,9 +51,9 @@
     <hr>
     <div class='requestontable'>
     <% @user_requests.each do |request|%>
-    <% if request.status == 'On hold' && request.request_owner == current_staff_member.name %>
+    <% if request.status == 'On hold' && request.staff_member.id == current_staff_member.id %>
     <div class='reqtext'>
-        <p>From: <%= User.find(request.user_id).email %></p>
+        <p>From: <%= request.user.email %></p>
         <p>Subject: <%= request.subject %></p>
         <p>Text: <%= truncate(request.text, limit: 30) %></p>
         <p>Status: <%= request.status %></p>
@@ -72,9 +72,9 @@
     <hr>
     <div class='requestontable'>
     <% @user_requests.each do |request|%>
-    <% if request.status == 'Closed' && request.request_owner == current_staff_member.name %>
+    <% if request.status == 'Closed' && request.staff_member.id == current_staff_member.id %>
     <div class='reqtext'>
-        <p>From: <%= User.find(request.user_id).email %></p>
+        <p>From: <%= request.user.email %></p>
         <p>Subject: <%= request.subject %></p>
         <p>Text: <%= truncate(request.text, limit: 30) %></p>
         <p>Status: <%= request.status %></p>

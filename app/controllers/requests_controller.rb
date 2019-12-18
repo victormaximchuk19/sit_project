@@ -38,8 +38,7 @@ class RequestsController < ApplicationController
     def send_answer
         @user_request=Request.find_by_uniq_url(params[:uniq_url])
         if  !(params[:answer] == "") 
-            answer = Answer.new(answer_text: params[:answer],request_url: @user_request.uniq_url) 
-            answer.save
+            answer = Answer.create(answer_text: params[:answer],request_id: @user_request.id) 
             UserMailer.answer(@user_request, answer).deliver
             flash[:success]='Your answer send successfully!'
             redirect_to '/request/answer/' + @user_request.uniq_url
@@ -63,7 +62,7 @@ class RequestsController < ApplicationController
     end
 
     def new_request_owner
-        params.require(:data).permit(:request_owner)
+        params.require(:data).permit(:staff_member_id)
     end
 
     def search_params

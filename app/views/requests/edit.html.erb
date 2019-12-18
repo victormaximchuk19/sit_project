@@ -9,16 +9,16 @@
      <%= link_to 'Back', requests_all_path %>
      <%= form_with(url: @user_request.uniq_url , action: :update , model: @user_request) do |req| %>
      <% if @user_request.status == 'Waiting for staff response' %>
-     <% @user_request.update(request_owner: current_staff_member.name, status: 'Opened') %>
+     <% @user_request.update(staff_member_id: current_staff_member.id, status: 'Opened') %>
      <% UserMailer.status_updated(@user_request).deliver %>
      <% end %>
           <hr>
-          <a>Owner of the request: <%= @user_request.request_owner %> </a>
+          <a>Owner of the request: <%= @user_request.staff_member.name %> </a>
           | <%= link_to 'Set owner', @user_request.uniq_url + '/setowner' %>
           <hr>
           <p>From: </p>
-          <p><%= User.find(@user_request.user_id).name %> </p> 
-          <p><%= User.find(@user_request.user_id).email %> </p> 
+          <p><%= @user_request.user.name %> </p> 
+          <p><%= @user_request.user.email %> </p> 
           <hr>
           <h3><%= @user_request.subject %></h3>
           <h5><%= @user_request.text %> </h5>
@@ -32,15 +32,12 @@
      <%end%>
           <p style='margin-top:10px;'>Answers:</p> 
           <div class='answers'>
-               <% @answers = Answer.all %> 
-               <% @answers.each do |answ| %>
-                    <% if answ.request_url == @user_request.uniq_url %>
-                         <h4> From: <%= @user_request.request_owner %> </h4>
+               <% @user_request.answers.each do |answ| %>
+                         <h4> From: <%= @user_request.staff_member.name %> </h4>
                          <p>  <%= answ.answer_text %></p>
                          <p class='datestyle'>Sent at: <%= answ.created_at.strftime("%H:%M %Y-%m-%d") %></p>
                          <hr>
                     <% end %>
-               <% end %>
           </div>
           <hr>
           <p style='margin-top:10px;'>Answer: </p>

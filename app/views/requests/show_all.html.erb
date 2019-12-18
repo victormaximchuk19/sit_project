@@ -11,10 +11,10 @@
     <% @user_requests.each do |req| %>
     <hr>
     Owner: 
-    <%= req.request_owner %><br>
+    <%= req.staff_member.name %><br>
     From: 
-    <%= User.find(req.user_id).name %>,
-    <%= User.find(req.user_id).email %><br>
+    <%= req.user.name %>,
+    <%= req.user.email %><br>
     Subject: 
     <%= req.subject %><br>
     Text: 

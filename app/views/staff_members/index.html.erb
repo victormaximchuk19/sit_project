@@ -2,7 +2,7 @@
 <h1>All staff members: </h1>
 <% @staff_members.each do |member| %>
         <p> Name: <%= member.name %> </p>
-        <%= button_to 'Set owner' , controller: :requests , action: :update_owner, data: { request_owner: member.name }   %>
+        <%= button_to 'Set owner' , controller: :requests , action: :update_owner, data: { staff_member_id: member.id }   %>
         <hr>
  <%end%>
  </div>

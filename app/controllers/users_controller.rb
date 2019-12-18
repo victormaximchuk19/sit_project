@@ -12,22 +12,16 @@ class UsersController < ApplicationController
 
 
     def create
-        @user = User.new(user_params)
-        if @user.save
-            @user_request=Request.new(
-            request_type: params['request']['request_type'], 
-            text: params['request']['text'],
-            user_id: @user.id , 
-            uniq_url: unique_url, 
-            subject: params['request']['subject'],
-            status: "Waiting for staff response")
-            @user_request.save
-            flash[:success]="Request send successfully!"
-            UserMailer.request_received(@user, @user_request).deliver
-            redirect_to pages_home_path
-         else
-          flash[:danger]
-          render "new"
+        if @user = User.find_or_create_by(user_params)
+           @user_request = create_request
+            if @user.errors.any? || @user_request.errors.any?
+                flash[:danger]
+                render "new"
+            else
+                flash[:success]="Request send successfully!"
+                UserMailer.request_received(@user, @user_request).deliver
+                redirect_to pages_home_path
+            end
         end
     end
 
@@ -58,6 +52,16 @@ class UsersController < ApplicationController
 
     def user_params
         params.require(:user).permit(:name, :email)
+    end
+
+    def create_request
+        Request.create(
+            request_type: params['request']['request_type'], 
+            text: params['request']['text'],
+            user_id: @user.id , 
+            uniq_url: unique_url, 
+            subject: params['request']['subject'],
+            status: "Waiting for staff response")
     end
     
 end

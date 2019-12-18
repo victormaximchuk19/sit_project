@@ -1,7 +1,6 @@
 <h1>Dear <%= @user.name %>, </h1>
-
 <p>
-Your reqeust successfully received.
-Please wait for responce!
+Your reqeust was successfully received.
+Please wait for the responce!
 </p>
 <p><%= link_to 'Your reqeust', "#{ENV['DOMAIN']}/request/show/" + @request.uniq_url %></p>

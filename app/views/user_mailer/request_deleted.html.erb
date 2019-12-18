@@ -1,8 +1,9 @@
 <h1>Dear <%= @user.name %>, </h1>
-
+<p>We are sorry, but your request was deleted for some reasons.</p>
 <p>
-Your request was deleted!
+Your request:
 </p>
 Subject: <div> <%= @request.subject %> </div>
 Text: <div> <%= @request.text %> </div>
-
+Sent at: <div><%= @request.created_at.strftime("%Y-%m-%d") %> </div>
+<p> Thank you for understanding, tech support. </p>

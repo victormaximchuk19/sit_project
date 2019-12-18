@@ -1,3 +1,3 @@
 class Answer < ApplicationRecord
-    belongs_to :request, optional: true
+    belongs_to :request, foreign_key: :request_id
 end

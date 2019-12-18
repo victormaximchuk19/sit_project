@@ -9,8 +9,8 @@
    <%= link_to 'Back', requests_all_path %>
    <hr>
         <p>From: </p>
-        <p><%= User.find(@user_request.user_id).name %> </p> 
-        <p><%= User.find(@user_request.user_id).email %> </p> 
+        <p><%= @user_request.user.name%> </p> 
+        <p><%= @user_request.user.email %> </p> 
         <hr>
         <h3><%= @user_request.subject %></h3>
         <h5><%= @user_request.text %> </h5>
@@ -18,19 +18,15 @@
         <p>Type of the request: </p>
         <p><%= @user_request.request_type %> </p>
         <hr>
-        <p>Status of the request: </p>
-        <p><%= @user_request.status %> </p>
-   <hr>
+        <p> Type of the request: <%= @user_request.request_type %> </p>
+    <hr>
           <p style='margin-top:10px;'>Answers:</p> 
           <div class='answers'>
-               <% @answers = Answer.all %> 
-               <% @answers.each do |answ| %>
-                    <% if answ.request_url == @user_request.uniq_url %>
-                         <h4> From: <%= @user_request.request_owner %> </h4>
+               <% @user_request.answers.each do |answ| %>
+                         <h4> From: <%= @user_request.staff_member.name %> </h4>
                          <p>  <%= answ.answer_text %></p>
                          <p class='datestyle'>Sent at: <%= answ.created_at.strftime("%H:%M %Y-%m-%d") %></p>
                          <hr>
                     <% end %>
-               <% end %>
           </div>
 </div>
