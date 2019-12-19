@@ -8,8 +8,7 @@
     <h2 class="text-center" style='margin-top:20px; color: slategrey;'> Unassigned </h2>
     <hr>
     <div class='requestontable'>
-    <% @user_requests.each do |request|%>
-    <% if request.status == 'Waiting for staff response' %>
+    <% @user_requests_unassigned.each do |request|%>
     <div class='reqtext'>
         <p>From: <%= request.user.email %></p>
         <p>Subject: <%= request.subject %></p>
@@ -21,7 +20,6 @@
     </div>
     <hr>
     <%end%>
-    <%end%>
     </div>
     </div>
 
@@ -29,8 +27,7 @@
     <h2 class="text-center" style='margin-top:20px; color: slategrey;'> Opened </h2>
     <hr>
     <div class='requestontable'>
-    <% @user_requests.each do |request|%>
-    <% if request.status == 'Opened' && request.staff_member.id == current_staff_member.id %>
+    <% @user_requests_opened.each do |request|%>
     <div class='reqtext'>
         <p>From: <%= request.user.email %></p>
         <p>Subject: <%= request.subject %></p>
@@ -41,7 +38,6 @@
     <%= link_to "Answer", action: 'edit', uniq_url: request.uniq_url %>
     </div>
     <hr>
-    <%end%>
     <%end%>
     </div>
     </div>
@@ -50,8 +46,7 @@
     <h2 class="text-center" style='margin-top:20px; color: slategrey;'> On hold </h2>
     <hr>
     <div class='requestontable'>
-    <% @user_requests.each do |request|%>
-    <% if request.status == 'On hold' && request.staff_member.id == current_staff_member.id %>
+    <% @user_requests_on_hold.each do |request|%>
     <div class='reqtext'>
         <p>From: <%= request.user.email %></p>
         <p>Subject: <%= request.subject %></p>
@@ -62,7 +57,6 @@
     <%= link_to "Answer", action: 'edit', uniq_url: request.uniq_url %>
     </div>
     <hr>
-    <%end%>
     <%end%>
     </div>
     </div>
@@ -71,8 +65,7 @@
     <h2 class="text-center" style='margin-top:20px; color: slategrey;'> Closed </h2>
     <hr>
     <div class='requestontable'>
-    <% @user_requests.each do |request|%>
-    <% if request.status == 'Closed' && request.staff_member.id == current_staff_member.id %>
+    <% @user_requests_closed.each do |request|%>
     <div class='reqtext'>
         <p>From: <%= request.user.email %></p>
         <p>Subject: <%= request.subject %></p>
@@ -83,7 +76,6 @@
     <%= link_to "Answer", action: 'edit', uniq_url: request.uniq_url %>
     </div>
     <hr>
-    <%end%>
     <%end%>
     </div>
     </div>

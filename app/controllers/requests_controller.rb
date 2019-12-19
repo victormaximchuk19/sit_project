@@ -1,15 +1,18 @@
 class RequestsController < ApplicationController
     before_action :authorized, except: :show
     def index
-        @user_requests = Request.all
+        @user_requests_unassigned = Request.where(status: 'Waiting for staff response')
+        @user_requests_opened = Request.where(status: 'Opened', staff_member_id: current_staff_member.id.to_s)
+        @user_requests_on_hold = Request.where(status: 'On hold', staff_member_id: current_staff_member.id.to_s)
+        @user_requests_closed = Request.where(status: 'Closed', staff_member_id: current_staff_member.id.to_s)
     end
 
     def show_all
         if !params['search'].blank?
             @user_requests = Request.where("LOWER(subject) LIKE LOWER(?) OR uniq_url LIKE (?)", "%#{params['search']}%", params['search'])
-          else
+        else
             @user_requests = Request.all
-          end
+        end
     end
 
     def show
@@ -18,6 +21,10 @@ class RequestsController < ApplicationController
     
     def edit        
         @user_request = Request.find_by_uniq_url(params[:uniq_url])
+        if @user_request.status == 'Waiting for staff response'
+           @user_request.update(staff_member_id: current_staff_member.id, status: 'Opened')
+           UserMailer.status_updated(@user_request).deliver
+        end
     end
 
     def update_owner

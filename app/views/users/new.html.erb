@@ -1,11 +1,6 @@
 <h1 class="text-center">Your request </h1>
 <div class="container" style="max-width: 450px; background: #b9d3ea; border-radius: 10px; padding-top: 10px;">
 <%= form_for :user, local: true do |form| %>
-    <% if @user.errors.any? %>
-    <% @user.errors.full_messages.each do|msg| %>
-    <div class="alert alert-danger"><%= msg %></div>
-  <% end %>
-<% end %>
    <p>
     <%= form.label :name %><br>
     <%= form.text_field :name, class: 'form-control ',required: true%>

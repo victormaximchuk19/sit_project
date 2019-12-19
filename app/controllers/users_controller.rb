@@ -15,7 +15,7 @@ class UsersController < ApplicationController
         if @user = User.find_or_create_by(user_params)
            @user_request = create_request
             if @user.errors.any? || @user_request.errors.any?
-                flash[:danger]
+                flash[:danger] = "Error!"
                 render "new"
             else
                 flash[:success]="Request send successfully!"

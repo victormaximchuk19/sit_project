@@ -5,13 +5,8 @@
     padding-top: 10px;
     padding-bottom: 10px;
     border-radius: 5px;'>
-
      <%= link_to 'Back', requests_all_path %>
      <%= form_with(url: @user_request.uniq_url , action: :update , model: @user_request) do |req| %>
-     <% if @user_request.status == 'Waiting for staff response' %>
-     <% @user_request.update(staff_member_id: current_staff_member.id, status: 'Opened') %>
-     <% UserMailer.status_updated(@user_request).deliver %>
-     <% end %>
           <hr>
           <a>Owner of the request: <%= @user_request.staff_member.name %> </a>
           | <%= link_to 'Set owner', @user_request.uniq_url + '/setowner' %>
@@ -37,7 +32,7 @@
                          <p>  <%= answ.answer_text %></p>
                          <p class='datestyle'>Sent at: <%= answ.created_at.strftime("%H:%M %Y-%m-%d") %></p>
                          <hr>
-                    <% end %>
+               <% end %>
           </div>
           <hr>
           <p style='margin-top:10px;'>Answer: </p>
