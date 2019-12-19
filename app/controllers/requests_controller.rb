@@ -2,9 +2,9 @@ class RequestsController < ApplicationController
     before_action :authorized, except: :show
     def index
         @user_requests_unassigned = Request.where(status: 'Waiting for staff response')
-        @user_requests_opened = Request.where(status: 'Opened', staff_member_id: current_staff_member.id.to_s)
-        @user_requests_on_hold = Request.where(status: 'On hold', staff_member_id: current_staff_member.id.to_s)
-        @user_requests_closed = Request.where(status: 'Closed', staff_member_id: current_staff_member.id.to_s)
+        @user_requests_opened = Request.where(status: 'Opened', staff_member_id: current_staff_member.id)
+        @user_requests_on_hold = Request.where(status: 'On hold', staff_member_id: current_staff_member.id)
+        @user_requests_closed = Request.where(status: 'Closed', staff_member_id: current_staff_member.id)
     end
 
     def show_all

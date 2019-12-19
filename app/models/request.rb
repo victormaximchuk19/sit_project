@@ -1,6 +1,6 @@
 class Request < ApplicationRecord
     belongs_to :user, foreign_key: :user_id
-    belongs_to :staff_member, foreign_key: :staff_member_id, optional: true
+    belongs_to :staff_member, optional: true
     has_many :answers, dependent: :destroy
     validates :text, presence: true, length: {minimum:3 , maximum: 3000}
     
